@@ -6,7 +6,7 @@
 
 @layer base {
   :root {
-    --color-accent: #14b8a6;
+    --color-accent: #84cc16;
   }
 
   html {
@@ -14,16 +14,10 @@
   }
 
   body {
-    @apply bg-white text-zinc-900 dark:bg-zinc-950 dark:text-zinc-100 antialiased;
+    @apply bg-black text-white antialiased;
   }
 
   ::selection {
-    @apply bg-teal-200 dark:bg-teal-800;
-  }
-}
-
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+    @apply bg-accent-500/30;
   }
 }
