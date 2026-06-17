@@ -2,6 +2,7 @@ import Nav from "./components/Nav"
 import Hero from "./components/Hero"
 import About from "./components/About"
 import Skills from "./components/Skills"
+import MyWork from "./components/MyWork"
 import Contact from "./components/Contact"
 import Footer from "./components/Footer"
 
@@ -13,6 +14,7 @@ function App() {
         <Hero />
         <About />
         <Skills />
+        <MyWork />
         <Contact />
       </main>
       <Footer />
