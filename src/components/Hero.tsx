@@ -84,15 +84,7 @@ export default function Hero() {
             className="hidden md:block relative"
           >
             <div className="relative aspect-[3/4] rounded-2xl overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-br from-accent-900/30 via-zinc-900 to-black" />
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="text-center">
-                  <div className="w-32 h-32 rounded-full bg-accent-500/20 border-2 border-accent-500/30 flex items-center justify-center mx-auto">
-                    <span className="text-4xl font-bold text-accent-400">SS</span>
-                  </div>
-                  <p className="mt-4 text-sm text-white/40 font-mono">developer</p>
-                </div>
-              </div>
+              <img src="/shayann.png" alt="Shayan Shakeel" className="w-full h-full object-cover" />
               <div className="absolute inset-0 ring-1 ring-inset ring-white/5 rounded-2xl pointer-events-none" />
             </div>
 
