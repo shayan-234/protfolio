@@ -15,6 +15,34 @@ export const personalInfo = {
   ],
 }
 
+export const projects = [
+  {
+    id: "advera",
+    name: "Advera",
+    url: "https://nexora-h4xj.onrender.com/",
+    screenshots: [2, 3, 6, 7, 10],
+    description: "AI-powered marketing platform for modern businesses.",
+  },
+  {
+    id: "schoolstack",
+    name: "SchoolStack",
+    url: "https://schoolstack-f0l4.onrender.com/",
+    screenshots: [],
+    description: "A full-stack school management platform designed to simplify school operations, including student management, attendance tracking, fee management, exams, and communication between teachers, students, and parents.",
+    techStack: ["React", "Next.js", "Tailwind CSS", "Node.js", "Express", "PostgreSQL", "JWT"],
+    features: [
+      "Student Management",
+      "Teacher Management",
+      "Attendance System",
+      "Fee Management",
+      "Exams & Results",
+      "Dashboard & Analytics",
+      "Role-Based Auth",
+      "Responsive Design",
+    ],
+  },
+]
+
 export const skills = [
   {
     category: "Growth Marketing",
