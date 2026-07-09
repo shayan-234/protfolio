@@ -17,11 +17,22 @@ export const personalInfo = {
 
 export const projects = [
   {
-    id: "advera",
-    name: "Advera",
+    id: "syntrix",
+    name: "Syntrix",
     url: "https://nexora-h4xj.onrender.com/",
     screenshots: [2, 3, 6, 7, 10],
-    description: "AI-powered marketing platform for modern businesses.",
+    description: "A modern digital marketing agency website designed to showcase professional digital services, including Google Ads management, Meta Ads, social media management, and website design services.",
+    techStack: ["React", "Vite", "Tailwind CSS", "JavaScript", "HTML5", "CSS3", "Vercel"],
+    features: [
+      "Professional Landing Page",
+      "Google Ads Service Section",
+      "Meta Ads Service Section",
+      "Social Media Management",
+      "Web Development Services",
+      "Responsive Design",
+      "Clean UI/UX",
+      "Performance Optimized",
+    ],
   },
   {
     id: "schoolstack",
