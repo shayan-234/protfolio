@@ -49,73 +49,17 @@ function ProjectView({ projectId }: { projectId: string }) {
         {project.description}
       </p>
 
-      <div className="max-w-2xl mx-auto mb-8">
-        <div className="relative aspect-[16/9] rounded-xl overflow-hidden bg-white/5 border border-white/10">
-          {hasScreenshots ? (
-            <AnimatePresence mode="wait">
-              <motion.a
-                key={index}
-                href={project.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                initial={{ opacity: 0, x: 40 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -40 }}
-                transition={{ duration: 0.25 }}
-                className="block w-full h-full"
-              >
-                <img
-                  src={`/${projectId}-${project.screenshots[index]}.png`}
-                  alt={`${project.name} screenshot ${project.screenshots[index]}`}
-                  className="w-full h-full object-cover"
-                />
-              </motion.a>
-            </AnimatePresence>
-          ) : (
-            <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-accent-900/20 via-zinc-900 to-black">
-              <div className="text-center">
-                <span className="text-5xl font-bold text-accent-500/30">{'{ }'}</span>
-                <p className="mt-2 text-xs text-white/20 font-mono">screenshots coming soon</p>
-              </div>
-            </div>
-          )}
-        </div>
-
-        {hasScreenshots && (
-          <div className="flex items-center justify-center gap-6 mt-4">
-            <button
-              onClick={prev}
-              className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/60 hover:bg-white/10 transition-colors"
-              aria-label="Previous"
-            >
-              <CaretLeft size={16} weight="bold" />
-            </button>
-            <span className="text-xs font-mono text-white/40">
-              {index + 1} / {total}
-            </span>
-            <button
-              onClick={next}
-              className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/60 hover:bg-white/10 transition-colors"
-              aria-label="Next"
-            >
-              <CaretRight size={16} weight="bold" />
-            </button>
-          </div>
-        )}
-      </div>
-
       <div className="grid md:grid-cols-2 gap-8 items-start">
         <div>
           <h3 className="text-sm font-semibold text-accent-400 mb-3">Tech Stack</h3>
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-2 mb-8">
             {project.techStack!.map((tech) => (
               <span key={tech} className="px-3 py-1.5 text-xs rounded-lg bg-white/5 text-white/60">
                 {tech}
               </span>
             ))}
           </div>
-        </div>
-        <div>
+
           <h3 className="text-sm font-semibold text-accent-400 mb-3">Features</h3>
           <ul className="space-y-1.5">
             {project.features!.map((f) => (
@@ -125,6 +69,61 @@ function ProjectView({ projectId }: { projectId: string }) {
               </li>
             ))}
           </ul>
+        </div>
+
+        <div>
+          <div className="relative aspect-[16/9] rounded-xl overflow-hidden bg-white/5 border border-white/10">
+            {hasScreenshots ? (
+              <AnimatePresence mode="wait">
+                <motion.a
+                  key={index}
+                  href={project.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  initial={{ opacity: 0, x: 40 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -40 }}
+                  transition={{ duration: 0.25 }}
+                  className="block w-full h-full"
+                >
+                  <img
+                    src={`/${projectId}-${project.screenshots[index]}.png`}
+                    alt={`${project.name} screenshot ${project.screenshots[index]}`}
+                    className="w-full h-full object-cover"
+                  />
+                </motion.a>
+              </AnimatePresence>
+            ) : (
+              <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-accent-900/20 via-zinc-900 to-black">
+                <div className="text-center">
+                  <span className="text-5xl font-bold text-accent-500/30">{'{ }'}</span>
+                  <p className="mt-2 text-xs text-white/20 font-mono">screenshots coming soon</p>
+                </div>
+              </div>
+            )}
+          </div>
+
+          {hasScreenshots && (
+            <div className="flex items-center justify-center gap-6 mt-4">
+              <button
+                onClick={prev}
+                className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/60 hover:bg-white/10 transition-colors"
+                aria-label="Previous"
+              >
+                <CaretLeft size={16} weight="bold" />
+              </button>
+              <span className="text-xs font-mono text-white/40">
+                {index + 1} / {total}
+              </span>
+              <button
+                onClick={next}
+                className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/60 hover:bg-white/10 transition-colors"
+                aria-label="Next"
+              >
+                <CaretRight size={16} weight="bold" />
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </div>
