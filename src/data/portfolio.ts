@@ -38,7 +38,7 @@ export const projects = [
     id: "schoolstack",
     name: "SchoolStack",
     url: "https://schoolstack-f0l4.onrender.com/",
-    screenshots: [],
+    screenshots: [1, 2, 3],
     description: "A full-stack school management platform designed to simplify school operations, including student management, attendance tracking, fee management, exams, and communication between teachers, students, and parents.",
     techStack: ["React", "Next.js", "Tailwind CSS", "Node.js", "Express", "PostgreSQL", "JWT"],
     features: [
