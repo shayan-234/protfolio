@@ -17,9 +17,16 @@ export default function About() {
           </h2>
           <div className="space-y-4">
             {personalInfo.about.map((paragraph, i) => (
-              <p key={i} className="text-white/60 leading-relaxed">
+              <motion.p
+                key={i}
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: i * 0.08 }}
+                className="text-white/60 leading-relaxed"
+              >
                 {paragraph}
-              </p>
+              </motion.p>
             ))}
           </div>
         </motion.div>

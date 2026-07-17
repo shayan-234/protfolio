@@ -29,13 +29,17 @@ export default function Skills() {
                 {group.category}
               </h3>
               <div className="flex flex-wrap gap-2">
-                {group.items.map((item) => (
-                  <span
+                {group.items.map((item, j) => (
+                  <motion.span
                     key={item}
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.25, delay: i * 0.05 + j * 0.03 }}
                     className="px-3 py-1.5 text-xs rounded-lg bg-white/5 text-white/60"
                   >
                     {item}
-                  </span>
+                  </motion.span>
                 ))}
               </div>
             </motion.div>

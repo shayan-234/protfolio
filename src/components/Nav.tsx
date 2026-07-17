@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react"
 import { motion, AnimatePresence, useScroll } from "motion/react"
-import { List, X } from "@phosphor-icons/react"
+import { Menu01Icon, Cancel01Icon } from "hugeicons-react"
 
 const links = [
   { label: "Home", href: "#home" },
   { label: "About", href: "#about" },
   { label: "Projects", href: "#work" },
+  { label: "Experience", href: "#experience" },
   { label: "Skills", href: "#skills" },
   { label: "Contact", href: "#contact" },
 ]
@@ -42,7 +43,7 @@ export default function Nav() {
             <a
               key={link.href}
               href={link.href}
-              className="text-sm text-white/60 hover:text-white transition-colors"
+              className="relative text-sm text-white/60 hover:text-white transition-colors after:absolute after:-bottom-1 after:left-0 after:h-px after:w-full after:origin-right after:scale-x-0 after:bg-accent-500 after:transition-transform after:duration-300 hover:after:origin-left hover:after:scale-x-100"
             >
               {link.label}
             </a>
@@ -54,7 +55,7 @@ export default function Nav() {
           className="md:hidden p-2 text-white/60"
           aria-label="Menu"
         >
-          {open ? <X size={22} /> : <List size={22} />}
+          {open ? <Cancel01Icon className="size-5" /> : <Menu01Icon className="size-5" />}
         </button>
       </div>
 

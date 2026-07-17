@@ -1,0 +1,17 @@
+{
+  "name": "Shayan Shakeel — Dev Marketer & SEO Manager & AI Integrator",
+  "short_name": "Shayan Shakeel",
+  "description": "Dev marketer, SEO manager, and AI integrator building modern web experiences.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#000000",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

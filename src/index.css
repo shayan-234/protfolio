@@ -1,4 +1,4 @@
-@import "@fontsource-variable/outfit";
+@import "@fontsource-variable/inter";
 
 @tailwind base;
 @tailwind components;
@@ -6,7 +6,7 @@
 
 @layer base {
   :root {
-    --color-accent: #84cc16;
+    --color-accent: #e56942;
   }
 
   html {

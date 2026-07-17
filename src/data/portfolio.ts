@@ -2,7 +2,7 @@ export const personalInfo = {
   name: "Shayan Shakeel",
   title: "Dev Marketer & SEO Manager & AI Integrator",
   tagline: "I bridge product engineering, growth marketing, and artificial intelligence to build digital experiences that rank, convert, and scale.",
-  email: "alex@example.com",
+  email: "shayanshakeel801@gmail.com",
   location: "San Francisco, CA",
   social: {
     github: "https://github.com/shayan-234",
@@ -21,7 +21,7 @@ export const projects = [
     id: "syntrix",
     name: "Syntrix",
     url: "https://nexora-h4xj.onrender.com/",
-    screenshots: [2, 3, 6, 7, 10],
+    screenshots: [1, 2, 3],
     description: "A modern digital marketing agency website designed to showcase professional digital services, including Google Ads management, Meta Ads, social media management, and website design services.",
     techStack: ["React", "Vite", "Tailwind CSS", "JavaScript", "HTML5", "CSS3", "Vercel"],
     features: [
@@ -33,6 +33,22 @@ export const projects = [
       "Responsive Design",
       "Clean UI/UX",
       "Performance Optimized",
+    ],
+  },
+  {
+    id: "issueforge",
+    name: "IssueForge",
+    url: "https://issueforge-1.onrender.com/",
+    screenshots: [1, 2, 3],
+    description: "A modern issue tracking and project management tool built for teams to create, assign, and resolve issues efficiently with real-time updates and collaboration features.",
+    techStack: ["React", "Node.js", "Express", "PostgreSQL", "Tailwind CSS", "JWT"],
+    features: [
+      "Issue Creation & Management",
+      "Real-Time Collaboration",
+      "Role-Based Access Control",
+      "Dashboard & Analytics",
+      "Responsive Design",
+      "REST API",
     ],
   },
   {
@@ -51,6 +67,31 @@ export const projects = [
       "Dashboard & Analytics",
       "Role-Based Auth",
       "Responsive Design",
+    ],
+  },
+]
+
+export const experience = [
+  {
+    role: "Full-Stack Developer & Digital Marketer",
+    company: "Freelance / Independent",
+    period: "Jan 2024 — Present",
+    location: "Remote · Pakistan",
+    highlights: [
+      "Build web applications with React, Next.js, and Tailwind CSS for clients.",
+      "Implement SEO strategies, manage Meta Ads and Google Ads campaigns.",
+      "Integrate AI capabilities using LLM APIs, RAG pipelines, and chatbots.",
+    ],
+  },
+  {
+    role: "Independent Developer",
+    company: "Personal Projects",
+    period: "Jun 2023 — Dec 2023",
+    location: "Remote · Pakistan",
+    highlights: [
+      "Developed SchoolStack — a full-stack school management platform.",
+      "Built Syntrix — a digital marketing agency website.",
+      "Applied SEO best practices and performance optimization.",
     ],
   },
 ]

@@ -1,15 +1,15 @@
 import { motion, useReducedMotion } from "motion/react"
-import { ArrowRight, Envelope } from "@phosphor-icons/react"
+import { ArrowRight03Icon, Mail01Icon } from "hugeicons-react"
 
 export default function Hero() {
   const reduce = useReducedMotion()
 
   return (
-    <section id="home" className="relative flex items-center bg-black">
+    <section id="home" className="relative min-h-svh flex items-center bg-black">
       <div className="absolute top-1/2 right-0 w-[600px] h-[600px] bg-accent-500/10 rounded-full blur-[120px] pointer-events-none" />
 
-      <div className="relative max-w-6xl mx-auto px-6 pt-20 md:pt-24 pb-16 w-full">
-        <div className="grid md:grid-cols-2 gap-12 md:gap-8 items-center">
+      <div className="relative w-full max-w-6xl mx-auto px-6 py-16 md:py-20">
+        <div className="grid md:grid-cols-2 gap-10 md:gap-8 items-center">
           <motion.div
             initial={reduce ? false : { opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -17,7 +17,7 @@ export default function Hero() {
           >
             <p className="text-white/40 text-sm mb-4">Hi, I&apos;m</p>
 
-            <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold tracking-tight leading-[1.05]">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.05]">
               <span className="text-accent-500">Shayan Shakeel</span>
               <br />
               <span className="text-white">I build </span>
@@ -30,29 +30,29 @@ export default function Hero() {
               initial={reduce ? false : { opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.15 }}
-              className="mt-8 text-base sm:text-lg text-white/60 max-w-md leading-relaxed"
+              className="mt-6 text-base sm:text-lg text-white/60 max-w-md leading-relaxed"
             >
-              Dev marketer, SEO manager, and AI integrator helping businesses grow with Meta Ads, Google Ads, technical SEO, and AI-powered automation.
+              A passionate developer and digital marketer from Pakistan, building modern web apps with React, Tailwind CSS, Python, and PostgreSQL.
             </motion.p>
 
             <motion.div
               initial={reduce ? false : { opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.25 }}
-              className="mt-10 flex flex-col sm:flex-row items-start gap-4"
+              className="mt-8 flex flex-col sm:flex-row items-start gap-4"
             >
               <a
                 href="#work"
                 className="inline-flex items-center gap-2 px-6 py-3 bg-accent-500 text-black rounded-lg text-sm font-semibold hover:bg-accent-400 transition-colors active:scale-[0.98]"
               >
                 View My Work
-                <ArrowRight size={16} weight="bold" />
+                <ArrowRight03Icon className="size-4" />
               </a>
               <a
                 href="#contact"
                 className="inline-flex items-center gap-2 px-6 py-3 border border-accent-500/50 text-accent-400 rounded-lg text-sm font-semibold hover:bg-accent-500/10 transition-colors active:scale-[0.98]"
               >
-                <Envelope size={16} />
+                <Mail01Icon className="size-4" />
                 Get In Touch
               </a>
             </motion.div>
@@ -61,12 +61,12 @@ export default function Hero() {
               initial={reduce ? false : { opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.35 }}
-              className="mt-12"
+              className="mt-10"
             >
-              <p className="text-xs font-mono uppercase tracking-[0.2em] text-white/40 mb-4">
+              <p className="text-xs font-mono uppercase tracking-[0.2em] text-white/40 mb-3">
                 TECH I WORK WITH
               </p>
-              <div className="flex items-center gap-3">
+              <div className="flex flex-wrap items-center gap-2">
                 <span className="px-3 py-1.5 text-xs font-semibold rounded-lg bg-white/5 border border-white/10 text-orange-500">HTML5</span>
                 <span className="px-3 py-1.5 text-xs font-semibold rounded-lg bg-white/5 border border-white/10 text-blue-500">CSS3</span>
                 <span className="px-3 py-1.5 text-xs font-semibold rounded-lg bg-white/5 border border-white/10 text-yellow-500">JavaScript</span>
@@ -83,7 +83,7 @@ export default function Hero() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="hidden md:block relative"
           >
-            <div className="relative aspect-[3/4] rounded-2xl overflow-hidden">
+            <div className="relative aspect-[3/4] max-h-[70vh] rounded-2xl overflow-hidden">
               <img src="/shayann.png" alt="Shayan Shakeel" className="w-full h-full object-cover" />
               <div className="absolute inset-0 ring-1 ring-inset ring-white/5 rounded-2xl pointer-events-none" />
             </div>

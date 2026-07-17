@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { motion, AnimatePresence } from "motion/react"
-import { ArrowUpRight, CaretLeft, CaretRight } from "@phosphor-icons/react"
+import { ArrowUpRight03Icon, ArrowLeft03Icon, ArrowRight03Icon } from "hugeicons-react"
 import { projects } from "../data/portfolio"
 
 function ProjectTabs({ active, onChange }: { active: string; onChange: (id: string) => void }) {
@@ -41,7 +41,7 @@ function ProjectView({ projectId }: { projectId: string }) {
           className="inline-flex items-center gap-2 px-6 py-3 bg-accent-500 text-black rounded-lg text-sm font-semibold hover:bg-accent-400 transition-colors active:scale-[0.98]"
         >
           Visit {project.name}
-          <ArrowUpRight size={16} weight="bold" />
+          <ArrowUpRight03Icon className="size-4" />
         </a>
       </div>
 
@@ -110,7 +110,7 @@ function ProjectView({ projectId }: { projectId: string }) {
                 className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/60 hover:bg-white/10 transition-colors"
                 aria-label="Previous"
               >
-                <CaretLeft size={16} weight="bold" />
+                <ArrowLeft03Icon className="size-4" />
               </button>
               <span className="text-xs font-mono text-white/40">
                 {index + 1} / {total}
@@ -120,7 +120,7 @@ function ProjectView({ projectId }: { projectId: string }) {
                 className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/60 hover:bg-white/10 transition-colors"
                 aria-label="Next"
               >
-                <CaretRight size={16} weight="bold" />
+                <ArrowRight03Icon className="size-4" />
               </button>
             </div>
           )}
