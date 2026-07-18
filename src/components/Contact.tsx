@@ -28,7 +28,7 @@ export default function Contact() {
               className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/60 hover:bg-accent-500/20 hover:text-accent-400 transition-colors"
               aria-label="GitHub"
             >
-              <GithubIcon className="size-4" />
+              <GithubIcon className="size-4" aria-hidden="true" />
             </a>
           </div>
         </motion.div>
@@ -47,7 +47,7 @@ export default function Contact() {
             className="inline-flex items-center gap-3 px-10 py-5 bg-accent-500 text-black rounded-xl text-lg font-semibold hover:bg-accent-400 transition-colors"
           >
             Get In Touch
-            <Mail01Icon className="size-5" />
+            <Mail01Icon className="size-5" aria-hidden="true" />
           </motion.a>
         </motion.div>
       </div>

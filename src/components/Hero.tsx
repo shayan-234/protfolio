@@ -29,7 +29,7 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <p className="text-white/40 text-sm mb-4">Hi, I&apos;m</p>
+            <p className="text-white/50 text-sm mb-4">Hi, I&apos;m</p>
 
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.05]">
               <span className="text-accent-500">Shayan Shakeel</span>
@@ -60,13 +60,13 @@ export default function Hero() {
                 className="inline-flex items-center gap-2 px-6 py-3 bg-accent-500 text-black rounded-lg text-sm font-semibold hover:bg-accent-400 transition-colors active:scale-[0.98]"
               >
                 View My Work
-                <ArrowRight03Icon className="size-4" />
+                <ArrowRight03Icon className="size-4" aria-hidden="true" />
               </a>
               <a
                 href="#contact"
                 className="inline-flex items-center gap-2 px-6 py-3 border border-accent-500/50 text-accent-400 rounded-lg text-sm font-semibold hover:bg-accent-500/10 transition-colors active:scale-[0.98]"
               >
-                <Mail01Icon className="size-4" />
+                <Mail01Icon className="size-4" aria-hidden="true" />
                 Get In Touch
               </a>
             </motion.div>
@@ -77,7 +77,7 @@ export default function Hero() {
               transition={{ duration: 0.5, delay: noAnimation ? 0 : 0.35 }}
               className="mt-10"
             >
-              <p className="text-xs font-mono uppercase tracking-[0.2em] text-white/40 mb-3">
+              <p className="text-xs font-mono uppercase tracking-[0.2em] text-white/50 mb-3">
                 TECH I WORK WITH
               </p>
               <div className="flex flex-wrap items-center gap-2">
@@ -102,7 +102,7 @@ export default function Hero() {
               <div className="absolute inset-0 ring-1 ring-inset ring-white/5 rounded-2xl pointer-events-none" />
             </div>
 
-            <div className="absolute -top-4 -right-4 w-36 rounded-xl bg-black/80 border border-white/10 p-3 font-mono text-[10px] text-accent-400/60 leading-relaxed">
+            <div aria-hidden="true" className="absolute -top-4 -right-4 w-36 rounded-xl bg-black/80 border border-white/10 p-3 font-mono text-[10px] text-accent-400/60 leading-relaxed">
               const developer = {'{'}
               <br />
               &nbsp;&nbsp;name: "Shayan Shakeel",

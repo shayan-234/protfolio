@@ -47,7 +47,7 @@ const ProjectView = memo(function ProjectView({ projectId }: { projectId: string
           className="inline-flex items-center gap-2 px-6 py-3 bg-accent-500 text-black rounded-lg text-sm font-semibold hover:bg-accent-400 transition-colors active:scale-[0.98]"
         >
           Visit {project.name}
-          <ArrowUpRight03Icon className="size-4" />
+          <ArrowUpRight03Icon className="size-4" aria-hidden="true" />
         </a>
       </div>
 
@@ -104,8 +104,8 @@ const ProjectView = memo(function ProjectView({ projectId }: { projectId: string
             ) : (
               <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-accent-900/20 via-zinc-900 to-black">
                 <div className="text-center">
-                  <span className="text-5xl font-bold text-accent-500/30">{'{ }'}</span>
-                  <p className="mt-2 text-xs text-white/20 font-mono">screenshots coming soon</p>
+                  <span className="text-5xl font-bold text-accent-500/30" aria-hidden="true">{'{ }'}</span>
+                  <p className="mt-2 text-xs text-white/50 font-mono">screenshots coming soon</p>
                 </div>
               </div>
             )}
@@ -118,9 +118,9 @@ const ProjectView = memo(function ProjectView({ projectId }: { projectId: string
                 className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/60 hover:bg-white/10 transition-colors"
                 aria-label="Previous"
               >
-                <ArrowLeft03Icon className="size-4" />
+                <ArrowLeft03Icon className="size-4" aria-hidden="true" />
               </button>
-              <span className="text-xs font-mono text-white/40">
+              <span className="text-xs font-mono text-white/50" aria-hidden="true">
                 {index + 1} / {total}
               </span>
               <button
@@ -128,7 +128,7 @@ const ProjectView = memo(function ProjectView({ projectId }: { projectId: string
                 className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/60 hover:bg-white/10 transition-colors"
                 aria-label="Next"
               >
-                <ArrowRight03Icon className="size-4" />
+                <ArrowRight03Icon className="size-4" aria-hidden="true" />
               </button>
             </div>
           )}

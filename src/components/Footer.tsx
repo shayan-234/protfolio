@@ -13,10 +13,10 @@ export default function Footer() {
         transition={{ duration: 0.5 }}
         className="max-w-6xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4"
       >
-        <p className="text-xs text-white/30">
+        <p className="text-xs text-white/50">
           &copy; {year} {personalInfo.name}. All rights reserved.
         </p>
-        <p className="text-xs text-white/30">
+        <p className="text-xs text-white/50">
           Built with React + Tailwind
         </p>
       </motion.div>

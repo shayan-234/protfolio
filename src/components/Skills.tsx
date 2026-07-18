@@ -28,20 +28,21 @@ export default function Skills() {
             <h3 className="text-sm font-semibold text-accent-400 mb-4">
               {group.category}
             </h3>
-            <div className="flex flex-wrap gap-2">
+            <ul className="flex flex-wrap gap-2">
               {group.items.map((item, j) => (
-                <motion.span
-                  key={item}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.25, delay: i * 0.05 + j * 0.03 }}
-                  className="px-3 py-1.5 text-xs rounded-lg bg-white/5 text-white/60"
-                >
-                  {item}
-                </motion.span>
+                <li key={item}>
+                  <motion.span
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.25, delay: i * 0.05 + j * 0.03 }}
+                    className="px-3 py-1.5 text-xs rounded-lg bg-white/5 text-white/60"
+                  >
+                    {item}
+                  </motion.span>
+                </li>
               ))}
-            </div>
+            </ul>
           </motion.div>
         ))}
       </div>

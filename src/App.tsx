@@ -26,7 +26,7 @@ function App() {
   return (
     <div className="min-h-screen bg-black text-white">
       <Nav />
-      <main>
+      <main id="main-content">
         <Hero />
         <SuspenseSection><About /></SuspenseSection>
         <SuspenseSection><Skills /></SuspenseSection>

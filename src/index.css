@@ -20,6 +20,24 @@
   }
 }
 
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 0;
+  z-index: 9999;
+  padding: 0.5rem 1rem;
+  background: #e56942;
+  color: black;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-decoration: none;
+  outline-offset: 2px;
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
 section[id]:not(#home) {
   content-visibility: auto;
   contain-intrinsic-size: 600px;

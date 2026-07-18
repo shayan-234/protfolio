@@ -24,7 +24,7 @@ export default function Nav() {
   }, [scrollY])
 
   return (
-    <nav
+    <nav aria-label="Main"
       className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
         scrolled
           ? "bg-black/80 backdrop-blur-xl border-b border-white/5"
@@ -32,10 +32,10 @@ export default function Nav() {
       }`}
     >
       <div className="max-w-6xl mx-auto px-6 flex items-center justify-between h-16 md:h-18">
-        <a href="#home" className="flex items-center gap-1 text-xl font-bold tracking-tight">
-          <span className="text-orange-500">&lt;</span>
-          <span className="text-white">/</span>
-          <span className="text-orange-500">&gt;</span>
+        <a href="#home" aria-label="Home" className="flex items-center gap-1 text-xl font-bold tracking-tight">
+          <span className="text-orange-500" aria-hidden="true">&lt;</span>
+          <span className="text-white" aria-hidden="true">/</span>
+          <span className="text-orange-500" aria-hidden="true">&gt;</span>
         </a>
 
         <div className="hidden md:flex items-center gap-8">
@@ -53,7 +53,8 @@ export default function Nav() {
         <button
           onClick={() => setOpen(!open)}
           className="md:hidden p-2 text-white/60"
-          aria-label="Menu"
+          aria-label={open ? "Close" : "Menu"}
+          aria-expanded={open}
         >
           {open ? <Cancel01Icon className="size-5" /> : <Menu01Icon className="size-5" />}
         </button>
