@@ -122,17 +122,6 @@
         border: 1px solid rgba(255,255,255,0.1);
         color: #fff;
       }
-      .hero-sk-fade {
-        animation: sk-fade-up 0.6s ease-out forwards;
-        opacity: 0;
-      }
-      .hero-sk-fade-1 { animation-delay: 0s; }
-      .hero-sk-fade-2 { animation-delay: 0.15s; }
-      .hero-sk-fade-3 { animation-delay: 0.25s; }
-      @keyframes sk-fade-up {
-        from { opacity: 0; transform: translateY(20px); }
-        to { opacity: 1; transform: translateY(0); }
-      }
       @media (min-width: 768px) {
         .hero-sk-title {
           font-size: 3.75rem;
@@ -147,16 +136,16 @@
     <div id="root">
       <div class="hero-sk">
         <div class="hero-sk-inner">
-          <p class="hero-sk-label hero-sk-fade hero-sk-fade-1">Hi, I&apos;m</p>
-          <h1 class="hero-sk-title hero-sk-fade hero-sk-fade-1">
+          <p class="hero-sk-label">Hi, I&apos;m</p>
+          <h1 class="hero-sk-title">
             <span>Shayan Shakeel</span><br />
             I build <span>digital</span><br />
             <span>experiences.</span>
           </h1>
-          <p class="hero-sk-text hero-sk-fade hero-sk-fade-2">
+          <p class="hero-sk-text">
             A passionate developer and digital marketer from Pakistan, building modern web apps with React, Tailwind CSS, Python, and PostgreSQL.
           </p>
-          <div class="hero-sk-tags hero-sk-fade hero-sk-fade-3">
+          <div class="hero-sk-tags">
             <p class="hero-sk-tags-label">TECH I WORK WITH</p>
             <div class="hero-sk-tags-row">
               <span class="hero-sk-tag" style="color:#f97316">HTML5</span>
