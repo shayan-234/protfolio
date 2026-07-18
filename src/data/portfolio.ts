@@ -3,7 +3,7 @@ export const personalInfo = {
   title: "Dev Marketer & SEO Manager & AI Integrator",
   tagline: "I bridge product engineering, growth marketing, and artificial intelligence to build digital experiences that rank, convert, and scale.",
   email: "shayanshakeel801@gmail.com",
-  location: "San Francisco, CA",
+  location: "Pakistan",
   social: {
     github: "https://github.com/shayan-234",
   },

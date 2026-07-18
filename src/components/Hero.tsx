@@ -1,8 +1,22 @@
+import { useMemo } from "react"
 import { motion, useReducedMotion } from "motion/react"
 import { ArrowRight03Icon, Mail01Icon } from "hugeicons-react"
 
-export default function Hero() {
+function useIsMobile() {
+  return useMemo(() => {
+    if (typeof window === "undefined") return false
+    return window.matchMedia("(max-width: 767px)").matches
+  }, [])
+}
+
+function useNoAnimation() {
   const reduce = useReducedMotion()
+  const mobile = useIsMobile()
+  return reduce || mobile
+}
+
+export default function Hero() {
+  const noAnimation = useNoAnimation()
 
   return (
     <section id="home" className="relative min-h-svh flex items-center bg-black">
@@ -11,7 +25,7 @@ export default function Hero() {
       <div className="relative w-full max-w-6xl mx-auto px-6 py-16 md:py-20">
         <div className="grid md:grid-cols-2 gap-10 md:gap-8 items-center">
           <motion.div
-            initial={reduce ? false : { opacity: 0, y: 30 }}
+            initial={noAnimation ? false : { opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
@@ -27,18 +41,18 @@ export default function Hero() {
             </h1>
 
             <motion.p
-              initial={reduce ? false : { opacity: 0, y: 20 }}
+              initial={noAnimation ? false : { opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.15 }}
+              transition={{ duration: 0.5, delay: noAnimation ? 0 : 0.15 }}
               className="mt-6 text-base sm:text-lg text-white/60 max-w-md leading-relaxed"
             >
               A passionate developer and digital marketer from Pakistan, building modern web apps with React, Tailwind CSS, Python, and PostgreSQL.
             </motion.p>
 
             <motion.div
-              initial={reduce ? false : { opacity: 0, y: 20 }}
+              initial={noAnimation ? false : { opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.25 }}
+              transition={{ duration: 0.5, delay: noAnimation ? 0 : 0.25 }}
               className="mt-8 flex flex-col sm:flex-row items-start gap-4"
             >
               <a
@@ -58,9 +72,9 @@ export default function Hero() {
             </motion.div>
 
             <motion.div
-              initial={reduce ? false : { opacity: 0, y: 20 }}
+              initial={noAnimation ? false : { opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.35 }}
+              transition={{ duration: 0.5, delay: noAnimation ? 0 : 0.35 }}
               className="mt-10"
             >
               <p className="text-xs font-mono uppercase tracking-[0.2em] text-white/40 mb-3">
@@ -78,7 +92,7 @@ export default function Hero() {
           </motion.div>
 
           <motion.div
-            initial={reduce ? false : { opacity: 0, x: 30 }}
+            initial={noAnimation ? false : { opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
             className="hidden md:block relative"

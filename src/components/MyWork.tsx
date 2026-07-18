@@ -1,7 +1,8 @@
-import { useState, memo } from "react"
+import { useState, memo, useCallback } from "react"
 import { motion, AnimatePresence } from "motion/react"
 import { ArrowUpRight03Icon, ArrowLeft03Icon, ArrowRight03Icon } from "hugeicons-react"
 import { projects } from "../data/portfolio"
+import { SectionWrapper } from "./SectionWrapper"
 
 const ProjectTabs = memo(function ProjectTabs({ active, onChange }: { active: string; onChange: (id: string) => void }) {
   return (
@@ -24,12 +25,17 @@ const ProjectTabs = memo(function ProjectTabs({ active, onChange }: { active: st
 })
 
 const ProjectView = memo(function ProjectView({ projectId }: { projectId: string }) {
-  const project = projects.find((p) => p.id === projectId)!
+  const project = projects.find((p) => p.id === projectId)
   const [index, setIndex] = useState(0)
+
+  if (!project) {
+    return <div className="text-white/40 text-center">Project not found.</div>
+  }
+
   const hasScreenshots = project.screenshots.length > 0
   const total = project.screenshots.length
-  const prev = () => setIndex((i) => (i === 0 ? total - 1 : i - 1))
-  const next = () => setIndex((i) => (i === total - 1 ? 0 : i + 1))
+  const prev = useCallback(() => setIndex((i) => (i === 0 ? total - 1 : i - 1)), [total])
+  const next = useCallback(() => setIndex((i) => (i === total - 1 ? 0 : i + 1)), [total])
 
   return (
     <div className="max-w-4xl mx-auto">
@@ -53,7 +59,7 @@ const ProjectView = memo(function ProjectView({ projectId }: { projectId: string
         <div>
           <h3 className="text-sm font-semibold text-accent-400 mb-3">Tech Stack</h3>
           <div className="flex flex-wrap gap-2 mb-8">
-            {project.techStack!.map((tech) => (
+            {project.techStack.map((tech) => (
               <span key={tech} className="px-3 py-1.5 text-xs rounded-lg bg-white/5 text-white/60">
                 {tech}
               </span>
@@ -62,7 +68,7 @@ const ProjectView = memo(function ProjectView({ projectId }: { projectId: string
 
           <h3 className="text-sm font-semibold text-accent-400 mb-3">Features</h3>
           <ul className="space-y-1.5">
-            {project.features!.map((f) => (
+            {project.features.map((f) => (
               <li key={f} className="text-white/60 text-sm flex items-center gap-2">
                 <span className="w-1 h-1 rounded-full bg-accent-500" />
                 {f}
@@ -136,32 +142,30 @@ export default function MyWork() {
   const [activeProject, setActiveProject] = useState("syntrix")
 
   return (
-    <section id="work" className="py-16 md:py-20 bg-black">
-      <div className="max-w-6xl mx-auto px-6">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.5 }}
-        >
-          <h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-white text-center mb-2">
-            My Work
-          </h2>
-          <ProjectTabs active={activeProject} onChange={setActiveProject} />
-        </motion.div>
+    <SectionWrapper id="work">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.3 }}
+        transition={{ duration: 0.5 }}
+      >
+        <h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-white text-center mb-2">
+          My Work
+        </h2>
+        <ProjectTabs active={activeProject} onChange={setActiveProject} />
+      </motion.div>
 
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={activeProject}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.3 }}
-          >
-            <ProjectView projectId={activeProject} />
-          </motion.div>
-        </AnimatePresence>
-      </div>
-    </section>
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={activeProject}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -20 }}
+          transition={{ duration: 0.3 }}
+        >
+          <ProjectView projectId={activeProject} />
+        </motion.div>
+      </AnimatePresence>
+    </SectionWrapper>
   )
 }
