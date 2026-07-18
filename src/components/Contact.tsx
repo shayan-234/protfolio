@@ -2,17 +2,13 @@ import { motion } from "motion/react"
 import { Mail01Icon, GithubIcon } from "hugeicons-react"
 import { personalInfo } from "../data/portfolio"
 import { SectionWrapper } from "./SectionWrapper"
+import { FadeInView } from "./FadeInView"
 
 export default function Contact() {
   return (
     <SectionWrapper id="contact">
       <div className="grid md:grid-cols-2 gap-12 md:gap-20">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.5 }}
-        >
+        <FadeInView y={30}>
           <h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-white">
             Let&apos;s build something
           </h2>
@@ -31,15 +27,9 @@ export default function Contact() {
               <GithubIcon className="size-4" aria-hidden="true" />
             </a>
           </div>
-        </motion.div>
+        </FadeInView>
 
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-          className="flex items-center justify-center md:justify-center h-full"
-        >
+        <FadeInView y={30} delay={0.1} className="flex items-center justify-center md:justify-center h-full">
           <motion.a
             href={`mailto:${personalInfo.email}`}
             whileHover={{ scale: 1.03 }}
@@ -49,7 +39,7 @@ export default function Contact() {
             Get In Touch
             <Mail01Icon className="size-5" aria-hidden="true" />
           </motion.a>
-        </motion.div>
+        </FadeInView>
       </div>
     </SectionWrapper>
   )

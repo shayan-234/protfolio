@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from "react"
 import { Menu01Icon, Cancel01Icon } from "hugeicons-react"
 
-const links = [
+const navLinks = [
   { label: "Home", href: "#home" },
   { label: "About", href: "#about" },
   { label: "Projects", href: "#work" },
@@ -22,6 +22,7 @@ export default function Nav() {
   }, [])
 
   const close = useCallback(() => setOpen(false), [])
+  const toggleOpen = useCallback(() => setOpen((prev) => !prev), [])
 
   return (
     <nav aria-label="Main"
@@ -39,7 +40,7 @@ export default function Nav() {
         </a>
 
         <div className="hidden md:flex items-center gap-8">
-          {links.map((link) => (
+          {navLinks.map((link) => (
             <a
               key={link.href}
               href={link.href}
@@ -51,7 +52,7 @@ export default function Nav() {
         </div>
 
         <button
-          onClick={() => setOpen(!open)}
+          onClick={toggleOpen}
           className="md:hidden p-2 text-white/60"
           aria-label={open ? "Close" : "Menu"}
           aria-expanded={open}
@@ -66,7 +67,7 @@ export default function Nav() {
         } bg-black/90 backdrop-blur-xl border-b border-white/5`}
       >
         <div className="px-6 py-4 flex flex-col gap-3">
-          {links.map((link) => (
+          {navLinks.map((link) => (
             <a
               key={link.href}
               href={link.href}

@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "motion/react"
 import { ArrowUpRight03Icon, ArrowLeft03Icon, ArrowRight03Icon } from "hugeicons-react"
 import { projects } from "../data/portfolio"
 import { SectionWrapper } from "./SectionWrapper"
+import { FadeInView } from "./FadeInView"
 
 const ProjectTabs = memo(function ProjectTabs({ active, onChange }: { active: string; onChange: (id: string) => void }) {
   return (
@@ -143,17 +144,12 @@ export default function MyWork() {
 
   return (
     <SectionWrapper id="work">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.3 }}
-        transition={{ duration: 0.5 }}
-      >
+      <FadeInView>
         <h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-white text-center mb-2">
           My Work
         </h2>
         <ProjectTabs active={activeProject} onChange={setActiveProject} />
-      </motion.div>
+      </FadeInView>
 
       <AnimatePresence mode="wait">
         <motion.div

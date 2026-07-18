@@ -1,19 +1,14 @@
 import { motion } from "motion/react"
 import { experience } from "../data/portfolio"
 import { SectionWrapper } from "./SectionWrapper"
+import { FadeInView } from "./FadeInView"
 
 export default function Experience() {
   return (
     <SectionWrapper id="experience">
-      <motion.h2
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.3 }}
-        transition={{ duration: 0.5 }}
-        className="text-3xl md:text-4xl font-semibold tracking-tight text-white mb-10"
-      >
-        Experience
-      </motion.h2>
+      <FadeInView className="text-3xl md:text-4xl font-semibold tracking-tight text-white mb-10">
+        <h2>Experience</h2>
+      </FadeInView>
 
       <div className="relative">
         <div className="absolute left-[11px] top-2 bottom-2 w-px bg-white/10" />

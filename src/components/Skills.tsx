@@ -1,28 +1,22 @@
 import { motion } from "motion/react"
 import { skills } from "../data/portfolio"
 import { SectionWrapper } from "./SectionWrapper"
+import { FadeInView } from "./FadeInView"
 
 export default function Skills() {
   return (
     <SectionWrapper id="skills">
-      <motion.h2
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.3 }}
-        transition={{ duration: 0.5 }}
-        className="text-3xl md:text-4xl font-semibold tracking-tight text-white mb-10"
-      >
-        Skills & Tools
-      </motion.h2>
+      <FadeInView className="text-3xl md:text-4xl font-semibold tracking-tight text-white mb-10">
+        <h2>Skills & Tools</h2>
+      </FadeInView>
 
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {skills.map((group, i) => (
-          <motion.div
+          <FadeInView
             key={group.category}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.4, delay: i * 0.05 }}
+            delay={i * 0.05}
+            duration={0.4}
+            viewportAmount={0.2}
             className="p-6 rounded-xl bg-white/5 border border-white/10 hover:border-accent-500/30 transition-colors"
           >
             <h3 className="text-sm font-semibold text-accent-400 mb-4">
@@ -43,7 +37,7 @@ export default function Skills() {
                 </li>
               ))}
             </ul>
-          </motion.div>
+          </FadeInView>
         ))}
       </div>
     </SectionWrapper>

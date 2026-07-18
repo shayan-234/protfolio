@@ -17,11 +17,15 @@ function SuspenseSection({ children }: { children: ReactNode }) {
   )
 }
 
-function App() {
+function useScrollToTopWithoutHash() {
   useEffect(() => {
     if (window.location.hash) return
     window.scrollTo(0, 0)
   }, [])
+}
+
+function App() {
+  useScrollToTopWithoutHash()
 
   return (
     <div className="min-h-screen bg-black text-white">
@@ -34,7 +38,7 @@ function App() {
         <SuspenseSection><MyWork /></SuspenseSection>
         <SuspenseSection><Contact /></SuspenseSection>
       </main>
-      <Suspense fallback={null}><Footer /></Suspense>
+      <SuspenseSection><Footer /></SuspenseSection>
     </div>
   )
 }
