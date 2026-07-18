@@ -1,9 +1,9 @@
-import { useState } from "react"
+import { useState, memo } from "react"
 import { motion, AnimatePresence } from "motion/react"
 import { ArrowUpRight03Icon, ArrowLeft03Icon, ArrowRight03Icon } from "hugeicons-react"
 import { projects } from "../data/portfolio"
 
-function ProjectTabs({ active, onChange }: { active: string; onChange: (id: string) => void }) {
+const ProjectTabs = memo(function ProjectTabs({ active, onChange }: { active: string; onChange: (id: string) => void }) {
   return (
     <div className="flex items-center justify-center gap-2 mb-8">
       {projects.map((p) => (
@@ -21,9 +21,9 @@ function ProjectTabs({ active, onChange }: { active: string; onChange: (id: stri
       ))}
     </div>
   )
-}
+})
 
-function ProjectView({ projectId }: { projectId: string }) {
+const ProjectView = memo(function ProjectView({ projectId }: { projectId: string }) {
   const project = projects.find((p) => p.id === projectId)!
   const [index, setIndex] = useState(0)
   const hasScreenshots = project.screenshots.length > 0
@@ -87,8 +87,10 @@ function ProjectView({ projectId }: { projectId: string }) {
                   className="block w-full h-full"
                 >
                   <img
-                    src={`/${projectId}-${project.screenshots[index]}.png`}
+                    src={`/${projectId}-${project.screenshots[index]}.webp`}
                     alt={`${project.name} screenshot ${project.screenshots[index]}`}
+                    width="1366" height="768"
+                    loading="lazy" decoding="async"
                     className="w-full h-full object-cover"
                   />
                 </motion.a>
@@ -128,7 +130,7 @@ function ProjectView({ projectId }: { projectId: string }) {
       </div>
     </div>
   )
-}
+})
 
 export default function MyWork() {
   const [activeProject, setActiveProject] = useState("syntrix")

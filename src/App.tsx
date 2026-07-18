@@ -1,12 +1,17 @@
-import { useEffect } from "react"
+import { useEffect, lazy, Suspense } from "react"
 import Nav from "./components/Nav"
 import Hero from "./components/Hero"
-import About from "./components/About"
-import Skills from "./components/Skills"
-import Experience from "./components/Experience"
-import MyWork from "./components/MyWork"
-import Contact from "./components/Contact"
-import Footer from "./components/Footer"
+
+const About = lazy(() => import("./components/About"))
+const Skills = lazy(() => import("./components/Skills"))
+const Experience = lazy(() => import("./components/Experience"))
+const MyWork = lazy(() => import("./components/MyWork"))
+const Contact = lazy(() => import("./components/Contact"))
+const Footer = lazy(() => import("./components/Footer"))
+
+function SectionFallback() {
+  return <div className="py-16 md:py-20 bg-black" />
+}
 
 function App() {
   useEffect(() => {
@@ -19,13 +24,13 @@ function App() {
       <Nav />
       <main>
         <Hero />
-        <About />
-        <Skills />
-        <Experience />
-        <MyWork />
-        <Contact />
+        <Suspense fallback={<SectionFallback />}><About /></Suspense>
+        <Suspense fallback={<SectionFallback />}><Skills /></Suspense>
+        <Suspense fallback={<SectionFallback />}><Experience /></Suspense>
+        <Suspense fallback={<SectionFallback />}><MyWork /></Suspense>
+        <Suspense fallback={<SectionFallback />}><Contact /></Suspense>
       </main>
-      <Footer />
+      <Suspense fallback={null}><Footer /></Suspense>
     </div>
   )
 }

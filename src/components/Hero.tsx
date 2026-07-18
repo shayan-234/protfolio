@@ -84,7 +84,7 @@ export default function Hero() {
             className="hidden md:block relative"
           >
             <div className="relative aspect-[3/4] max-h-[70vh] rounded-2xl overflow-hidden">
-              <img src="/shayann.png" alt="Shayan Shakeel" className="w-full h-full object-cover" />
+              <img src="/shayann.webp" alt="Shayan Shakeel" width="896" height="1194" loading="eager" decoding="async" className="w-full h-full object-cover" />
               <div className="absolute inset-0 ring-1 ring-inset ring-white/5 rounded-2xl pointer-events-none" />
             </div>
 
