@@ -63,6 +63,11 @@
     </script>
 
     <style>
+      *, *::before, *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
       .hero-sk {
         display: flex;
         align-items: center;
@@ -145,6 +150,10 @@
           <p class="hero-sk-text">
             A passionate developer and digital marketer from Pakistan, building modern web apps with React, Tailwind CSS, Python, and PostgreSQL.
           </p>
+          <div style="margin-top:2rem;display:flex;flex-direction:column;align-items:flex-start;gap:1rem">
+            <a href="#work" style="display:inline-flex;align-items:center;gap:0.5rem;padding:0.75rem 1.5rem;background:#e56942;color:#000;border-radius:0.5rem;font-size:0.875rem;font-weight:600;text-decoration:none">View My Work</a>
+            <a href="#contact" style="display:inline-flex;align-items:center;gap:0.5rem;padding:0.75rem 1.5rem;border:1px solid rgba(229,105,66,0.5);color:#ec8764;border-radius:0.5rem;font-size:0.875rem;font-weight:600;text-decoration:none">Get In Touch</a>
+          </div>
           <div class="hero-sk-tags">
             <p class="hero-sk-tags-label">TECH I WORK WITH</p>
             <div class="hero-sk-tags-row">
