@@ -6,6 +6,7 @@ const About = lazy(() => import("./components/About"))
 const Skills = lazy(() => import("./components/Skills"))
 const Experience = lazy(() => import("./components/Experience"))
 const MyWork = lazy(() => import("./components/MyWork"))
+const CaseStudies = lazy(() => import("./components/CaseStudies"))
 const Contact = lazy(() => import("./components/Contact"))
 const Footer = lazy(() => import("./components/Footer"))
 
@@ -36,6 +37,7 @@ function App() {
         <SuspenseSection><Skills /></SuspenseSection>
         <SuspenseSection><Experience /></SuspenseSection>
         <SuspenseSection><MyWork /></SuspenseSection>
+        <SuspenseSection><CaseStudies /></SuspenseSection>
         <SuspenseSection><Contact /></SuspenseSection>
       </main>
       <SuspenseSection><Footer /></SuspenseSection>
