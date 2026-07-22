@@ -38,25 +38,28 @@ function SplashCursor({
   COLOR = '#e56942',
 }: SplashCursorProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const animationFrameId = useRef<number>(null);
+  const animationFrameId = useRef<number | null>(null);
 
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
+    const cvs: HTMLCanvasElement = canvas;
 
     let isActive = true;
 
-    function pointerPrototype() {
-      this.id = -1;
-      this.texcoordX = 0;
-      this.texcoordY = 0;
-      this.prevTexcoordX = 0;
-      this.prevTexcoordY = 0;
-      this.deltaX = 0;
-      this.deltaY = 0;
-      this.down = false;
-      this.moved = false;
-      this.color = [0, 0, 0];
+    function Pointer() {
+      return {
+        id: -1,
+        texcoordX: 0,
+        texcoordY: 0,
+        prevTexcoordX: 0,
+        prevTexcoordY: 0,
+        deltaX: 0,
+        deltaY: 0,
+        down: false,
+        moved: false,
+        color: { r: 0, g: 0, b: 0 },
+      };
     }
 
     const config = {
@@ -79,9 +82,9 @@ function SplashCursor({
       COLOR,
     };
 
-    const pointers = [new pointerPrototype()];
+    const pointers = [Pointer()];
 
-    const { gl, ext } = getWebGLContext(canvas);
+    const { gl, ext } = getWebGLContext(cvs) as { gl: WebGLRenderingContext; ext: any };
     if (!gl) return;
     if (!ext.supportLinearFiltering) {
       config.DYE_RESOLUTION = 256;
@@ -152,7 +155,7 @@ function SplashCursor({
       if (!supportRenderTextureFormat(gl, internalFormat, format, type)) {
         switch (internalFormat) {
           case (gl as WebGL2RenderingContext).R16F:
-            return getSupportedFormat(gl, (gl as WebGL2RenderingContext).RG16F, gl.RG, type);
+            return getSupportedFormat(gl, (gl as WebGL2RenderingContext).RG16F, (gl as WebGL2RenderingContext).RG, type);
           case (gl as WebGL2RenderingContext).RG16F:
             return getSupportedFormat(gl, (gl as WebGL2RenderingContext).RGBA16F, gl.RGBA, type);
           default:
@@ -187,7 +190,7 @@ function SplashCursor({
       fragmentShaderSource: string;
       programs: any[];
       activeProgram: any;
-      uniforms: any[];
+      uniforms: any;
       constructor(vertexShader: WebGLShader, fragmentShaderSource: string) {
         this.vertexShader = vertexShader;
         this.fragmentShaderSource = fragmentShaderSource;
@@ -236,16 +239,17 @@ function SplashCursor({
     }
 
     function getUniforms(program: WebGLProgram) {
-      const uniforms: any[] = [];
+      const uniforms: Record<string, WebGLUniformLocation | null> = {};
       const uniformCount = gl.getProgramParameter(program, gl.ACTIVE_UNIFORMS);
       for (let i = 0; i < uniformCount; i++) {
-        const uniformName = gl.getActiveUniform(program, i).name;
-        uniforms[uniformName] = gl.getUniformLocation(program, uniformName);
+        const active = gl.getActiveUniform(program, i);
+        if (!active) continue;
+        uniforms[active.name] = gl.getUniformLocation(program, active.name);
       }
       return uniforms;
     }
 
-    function compileShader(type: number, source: string, keywords?: string[]) {
+    function compileShader(type: number, source: string, keywords?: string[] | null) {
       source = addKeywords(source, keywords);
       const shader = gl.createShader(type)!;
       gl.shaderSource(shader, source);
@@ -254,7 +258,7 @@ function SplashCursor({
       return shader;
     }
 
-    function addKeywords(source: string, keywords?: string[]) {
+    function addKeywords(source: string, keywords?: string[] | null) {
       if (!keywords) return source;
       let keywordsString = '';
       keywords.forEach((keyword) => {
@@ -768,11 +772,11 @@ function SplashCursor({
     }
 
     function resizeCanvas() {
-      const width = scaleByPixelRatio(canvas.clientWidth);
-      const height = scaleByPixelRatio(canvas.clientHeight);
-      if (canvas.width !== width || canvas.height !== height) {
-        canvas.width = width;
-        canvas.height = height;
+      const width = scaleByPixelRatio(cvs.clientWidth);
+      const height = scaleByPixelRatio(cvs.clientHeight);
+      if (cvs.width !== width || cvs.height !== height) {
+        cvs.width = width;
+        cvs.height = height;
         return true;
       }
       return false;
@@ -902,7 +906,7 @@ function SplashCursor({
     ) {
       splatProgram.bind();
       gl.uniform1i(splatProgram.uniforms.uTarget, velocity.read.attach(0));
-      gl.uniform1f(splatProgram.uniforms.aspectRatio, canvas.width / canvas.height);
+      gl.uniform1f(splatProgram.uniforms.aspectRatio, cvs.width / cvs.height);
       gl.uniform2f(splatProgram.uniforms.point, x, y);
       gl.uniform3f(splatProgram.uniforms.color, dx, dy, 0.0);
       gl.uniform1f(splatProgram.uniforms.radius, correctRadius(config.SPLAT_RADIUS / 100.0));
@@ -916,7 +920,7 @@ function SplashCursor({
     }
 
     function correctRadius(radius: number) {
-      const aspectRatio = canvas.width / canvas.height;
+      const aspectRatio = cvs.width / cvs.height;
       if (aspectRatio > 1) radius *= aspectRatio;
       return radius;
     }
@@ -925,8 +929,8 @@ function SplashCursor({
       pointer.id = id;
       pointer.down = true;
       pointer.moved = false;
-      pointer.texcoordX = posX / canvas.width;
-      pointer.texcoordY = 1.0 - posY / canvas.height;
+      pointer.texcoordX = posX / cvs.width;
+      pointer.texcoordY = 1.0 - posY / cvs.height;
       pointer.prevTexcoordX = pointer.texcoordX;
       pointer.prevTexcoordY = pointer.texcoordY;
       pointer.deltaX = 0;
@@ -942,8 +946,8 @@ function SplashCursor({
     ) {
       pointer.prevTexcoordX = pointer.texcoordX;
       pointer.prevTexcoordY = pointer.texcoordY;
-      pointer.texcoordX = posX / canvas.width;
-      pointer.texcoordY = 1.0 - posY / canvas.height;
+      pointer.texcoordX = posX / cvs.width;
+      pointer.texcoordY = 1.0 - posY / cvs.height;
       pointer.deltaX = correctDeltaX(pointer.texcoordX - pointer.prevTexcoordX);
       pointer.deltaY = correctDeltaY(pointer.texcoordY - pointer.prevTexcoordY);
       pointer.moved = Math.abs(pointer.deltaX) > 0 || Math.abs(pointer.deltaY) > 0;
@@ -955,13 +959,13 @@ function SplashCursor({
     }
 
     function correctDeltaX(delta: number) {
-      const aspectRatio = canvas.width / canvas.height;
+      const aspectRatio = cvs.width / cvs.height;
       if (aspectRatio < 1) delta *= aspectRatio;
       return delta;
     }
 
     function correctDeltaY(delta: number) {
-      const aspectRatio = canvas.width / canvas.height;
+      const aspectRatio = cvs.width / cvs.height;
       if (aspectRatio > 1) delta /= aspectRatio;
       return delta;
     }
