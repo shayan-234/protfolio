@@ -752,14 +752,18 @@ function SplashCursor({
     let lastUpdateTime = Date.now();
     let colorUpdateTimer = 0.0;
 
+    let frameSkip = 0;
     function updateFrame() {
       if (!isActive) return;
       const dt = calcDeltaTime();
       if (resizeCanvas()) initFramebuffers();
       updateColors(dt);
       applyInputs();
-      step(dt);
-      render(null);
+      frameSkip = (frameSkip + 1) % 3;
+      if (frameSkip === 0) {
+        step(dt);
+        render(null);
+      }
       animationFrameId.current = requestAnimationFrame(updateFrame);
     }
 
