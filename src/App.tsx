@@ -39,7 +39,13 @@ function App() {
 
   return (
     <div className="min-h-screen bg-black text-white">
-      <SplashCursor />
+      <SplashCursor
+        DYE_RESOLUTION={256}
+        SIM_RESOLUTION={64}
+        PRESSURE_ITERATIONS={8}
+        CURL={1}
+        SPLAT_FORCE={2000}
+      />
       <Nav />
       <main id="main-content">
         <Hero />
