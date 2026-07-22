@@ -5,17 +5,23 @@ import { projects } from "../data/portfolio"
 import { SectionWrapper } from "./SectionWrapper"
 import { FadeInView } from "./FadeInView"
 
-const ProjectTabs = memo(function ProjectTabs({ active, onChange }: { active: string; onChange: (id: string) => void }) {
+const ProjectTabs = memo(function ProjectTabs({
+  active,
+  onChange,
+}: {
+  active: string
+  onChange: (id: string) => void
+}) {
   return (
-    <div className="flex items-center justify-center gap-2 mb-8">
+    <div className="flex items-center justify-center gap-2 mb-10">
       {projects.map((p) => (
         <button
           key={p.id}
           onClick={() => onChange(p.id)}
-          className={`px-5 py-2 rounded-lg text-sm font-medium transition-colors ${
+          className={`px-5 py-2.5 rounded-xl text-sm font-medium transition-all ${
             active === p.id
               ? "bg-accent-500 text-black"
-              : "bg-white/5 text-white/60 hover:text-white"
+              : "bg-white/[0.03] text-white/50 hover:text-white hover:bg-white/[0.06]"
           }`}
         >
           {p.name}
@@ -29,57 +35,78 @@ const ProjectView = memo(function ProjectView({ projectId }: { projectId: string
   const project = projects.find((p) => p.id === projectId)
   const [index, setIndex] = useState(0)
 
+  const total = project?.screenshots.length ?? 0
+  const prev = useCallback(() => setIndex((i) => (i === 0 ? total - 1 : i - 1)), [total])
+  const next = useCallback(
+    () => setIndex((i) => (i === total - 1 ? 0 : i + 1)),
+    [total],
+  )
+
   if (!project) {
     return <div className="text-white/40 text-center">Project not found.</div>
   }
 
   const hasScreenshots = project.screenshots.length > 0
-  const total = project.screenshots.length
-  const prev = useCallback(() => setIndex((i) => (i === 0 ? total - 1 : i - 1)), [total])
-  const next = useCallback(() => setIndex((i) => (i === total - 1 ? 0 : i + 1)), [total])
 
   return (
-    <div className="max-w-4xl mx-auto">
-      <div className="text-center mb-6">
-        <a
-          href={project.url}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 px-6 py-3 bg-accent-500 text-black rounded-lg text-sm font-semibold hover:bg-accent-400 transition-colors active:scale-[0.98]"
-        >
-          Visit {project.name}
-          <ArrowUpRight03Icon className="size-4" aria-hidden="true" />
-        </a>
-      </div>
+    <div className="max-w-5xl mx-auto">
+      <div className="grid lg:grid-cols-5 gap-10 lg:gap-14">
+        <div className="lg:col-span-2">
+          <h3 className="text-xl font-semibold text-white mb-2">{project.name}</h3>
 
-      <p className="text-white/60 leading-relaxed mb-8 max-w-2xl mx-auto text-center">
-        {project.description}
-      </p>
+          <a
+            href={project.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 text-sm text-accent-400 hover:text-accent-300 transition-colors mb-6 group"
+          >
+            Visit Live Site
+            <ArrowUpRight03Icon
+              className="size-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+              aria-hidden="true"
+            />
+          </a>
 
-      <div className="grid md:grid-cols-2 gap-8 items-start">
-        <div>
-          <h3 className="text-sm font-semibold text-accent-400 mb-3">Tech Stack</h3>
-          <div className="flex flex-wrap gap-2 mb-8">
-            {project.techStack.map((tech) => (
-              <span key={tech} className="px-3 py-1.5 text-xs rounded-lg bg-white/5 text-white/60">
-                {tech}
-              </span>
-            ))}
+          <p className="text-white/60 text-sm leading-relaxed mb-6">
+            {project.description}
+          </p>
+
+          <div className="mb-6">
+            <h4 className="text-xs font-mono text-white/30 tracking-[0.1em] mb-3 uppercase">
+              Tech Stack
+            </h4>
+            <div className="flex flex-wrap gap-1.5">
+              {project.techStack.map((tech) => (
+                <span
+                  key={tech}
+                  className="px-2.5 py-1 text-xs rounded-lg bg-white/[0.04] text-white/50"
+                >
+                  {tech}
+                </span>
+              ))}
+            </div>
           </div>
 
-          <h3 className="text-sm font-semibold text-accent-400 mb-3">Features</h3>
-          <ul className="space-y-1.5">
-            {project.features.map((f) => (
-              <li key={f} className="text-white/60 text-sm flex items-center gap-2">
-                <span className="w-1 h-1 rounded-full bg-accent-500" />
-                {f}
-              </li>
-            ))}
-          </ul>
+          <div>
+            <h4 className="text-xs font-mono text-white/30 tracking-[0.1em] mb-3 uppercase">
+              Features
+            </h4>
+            <ul className="space-y-1.5">
+              {project.features.map((f) => (
+                <li
+                  key={f}
+                  className="text-white/50 text-sm flex items-center gap-2.5"
+                >
+                  <span className="w-1 h-1 rounded-full bg-accent-500/60 shrink-0" />
+                  {f}
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
 
-        <div>
-          <div className="relative aspect-[16/9] rounded-xl overflow-hidden bg-white/5 border border-white/10">
+        <div className="lg:col-span-3">
+          <div className="relative rounded-2xl overflow-hidden bg-white/[0.02] border border-white/[0.06] flex items-center justify-center">
             {hasScreenshots ? (
               <AnimatePresence mode="wait">
                 <motion.a
@@ -87,26 +114,35 @@ const ProjectView = memo(function ProjectView({ projectId }: { projectId: string
                   href={project.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  initial={{ opacity: 0, x: 40 }}
+                  initial={{ opacity: 0, x: 30 }}
                   animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -40 }}
+                  exit={{ opacity: 0, x: -30 }}
                   transition={{ duration: 0.25 }}
-                  className="block w-full h-full"
+                  className="block"
                 >
                   <img
                     src={`/${projectId}-${project.screenshots[index]}.webp`}
                     alt={`${project.name} screenshot ${project.screenshots[index]}`}
-                    width="1366" height="768"
-                    loading="lazy" decoding="async"
-                    className="w-full h-full object-cover"
+                    width="1366"
+                    height="768"
+                    loading="lazy"
+                    decoding="async"
+                    className="max-w-full h-auto"
                   />
                 </motion.a>
               </AnimatePresence>
             ) : (
-              <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-accent-900/20 via-zinc-900 to-black">
+              <div className="w-full h-64 flex items-center justify-center bg-gradient-to-br from-accent-900/20 via-zinc-900 to-black">
                 <div className="text-center">
-                  <span className="text-5xl font-bold text-accent-500/30" aria-hidden="true">{'{ }'}</span>
-                  <p className="mt-2 text-xs text-white/50 font-mono">screenshots coming soon</p>
+                  <span
+                    className="text-5xl font-bold text-accent-500/20"
+                    aria-hidden="true"
+                  >
+                    {'{ }'}
+                  </span>
+                  <p className="mt-2 text-xs text-white/30 font-mono">
+                    screenshots coming soon
+                  </p>
                 </div>
               </div>
             )}
@@ -116,20 +152,20 @@ const ProjectView = memo(function ProjectView({ projectId }: { projectId: string
             <div className="flex items-center justify-center gap-6 mt-4">
               <button
                 onClick={prev}
-                className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/60 hover:bg-white/10 transition-colors"
-                aria-label="Previous"
+                className="w-9 h-9 rounded-full bg-white/[0.04] border border-white/[0.06] flex items-center justify-center text-white/40 hover:text-white hover:bg-white/[0.08] transition-all"
+                aria-label="Previous screenshot"
               >
-                <ArrowLeft03Icon className="size-4" aria-hidden="true" />
+                <ArrowLeft03Icon className="size-3.5" aria-hidden="true" />
               </button>
-              <span className="text-xs font-mono text-white/50" aria-hidden="true">
+              <span className="text-xs font-mono text-white/40" aria-hidden="true">
                 {index + 1} / {total}
               </span>
               <button
                 onClick={next}
-                className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/60 hover:bg-white/10 transition-colors"
-                aria-label="Next"
+                className="w-9 h-9 rounded-full bg-white/[0.04] border border-white/[0.06] flex items-center justify-center text-white/40 hover:text-white hover:bg-white/[0.08] transition-all"
+                aria-label="Next screenshot"
               >
-                <ArrowRight03Icon className="size-4" aria-hidden="true" />
+                <ArrowRight03Icon className="size-3.5" aria-hidden="true" />
               </button>
             </div>
           )}
@@ -145,9 +181,12 @@ export default function MyWork() {
   return (
     <SectionWrapper id="work">
       <FadeInView>
-        <h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-white text-center mb-2">
-          My Work
+        <h2 className="text-sm font-mono text-accent-500 tracking-[0.15em] mb-4 text-center">
+          PROJECTS
         </h2>
+        <p className="text-3xl sm:text-4xl font-semibold tracking-tight text-white text-center leading-[1.1] mb-2">
+          Things I&apos;ve built.
+        </p>
         <ProjectTabs active={activeProject} onChange={setActiveProject} />
       </FadeInView>
 

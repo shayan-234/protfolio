@@ -8,5 +8,12 @@ export default defineConfig({
     cssMinify: "esbuild",
     minify: "esbuild",
     reportCompressedSize: false,
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          'react-vendor': ['react', 'react-dom'],
+        },
+      },
+    },
   },
 })

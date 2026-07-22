@@ -7,13 +7,20 @@ import { FadeInView } from "./FadeInView"
 export default function Contact() {
   return (
     <SectionWrapper id="contact">
-      <div className="grid md:grid-cols-2 gap-12 md:gap-20">
+      <FadeInView className="max-w-xl mb-14">
+        <h2 className="text-sm font-mono text-accent-500 tracking-[0.15em] mb-4">
+          CONTACT
+        </h2>
+      </FadeInView>
+
+      <div className="grid md:grid-cols-2 gap-12 md:gap-20 items-center">
         <FadeInView y={30}>
-          <h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-white">
-            Let&apos;s build something
-          </h2>
-          <p className="mt-4 text-white/60 leading-relaxed max-w-md">
-            Have an idea, a project, or a problem to solve? I'm always open to collaborating on exciting opportunities and building fast, modern, and user-focused web experiences. Let's turn your vision into something great.
+          <p className="text-4xl sm:text-5xl font-bold tracking-tight text-white leading-[1.05]">
+            Let&apos;s build something great together.
+          </p>
+          <p className="mt-6 text-white/50 leading-relaxed max-w-md">
+            Have an idea, a project, or a problem to solve? I&apos;m always open to
+            collaborating on exciting opportunities.
           </p>
 
           <div className="mt-8 flex items-center gap-4">
@@ -21,7 +28,7 @@ export default function Contact() {
               href={personalInfo.social.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/60 hover:bg-accent-500/20 hover:text-accent-400 transition-colors"
+              className="w-10 h-10 rounded-xl bg-white/[0.04] border border-white/[0.06] flex items-center justify-center text-white/50 hover:text-accent-400 hover:border-accent-500/30 transition-all"
               aria-label="GitHub"
             >
               <GithubIcon className="size-4" aria-hidden="true" />
@@ -29,12 +36,12 @@ export default function Contact() {
           </div>
         </FadeInView>
 
-        <FadeInView y={30} delay={0.1} className="flex items-center justify-center md:justify-center h-full">
+        <FadeInView y={30} delay={0.1}>
           <motion.a
             href={`mailto:${personalInfo.email}`}
-            whileHover={{ scale: 1.03 }}
-            whileTap={{ scale: 0.97 }}
-            className="inline-flex items-center gap-3 px-10 py-5 bg-accent-500 text-black rounded-xl text-lg font-semibold hover:bg-accent-400 transition-colors"
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            className="inline-flex items-center gap-3 px-10 py-5 rounded-2xl text-lg font-semibold bg-accent-500 text-black hover:bg-accent-400 transition-colors w-full sm:w-auto justify-center"
           >
             Get In Touch
             <Mail01Icon className="size-5" aria-hidden="true" />

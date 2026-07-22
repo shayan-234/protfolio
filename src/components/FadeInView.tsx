@@ -2,12 +2,12 @@ import { type ReactNode } from "react"
 import { motion } from "motion/react"
 
 interface FadeInViewProps {
-  children: ReactNode;
-  delay?: number;
-  y?: number;
-  duration?: number;
-  viewportAmount?: number;
-  className?: string;
+  children: ReactNode
+  delay?: number
+  y?: number
+  duration?: number
+  viewportAmount?: number
+  className?: string
 }
 
 export function FadeInView({
@@ -23,7 +23,7 @@ export function FadeInView({
       initial={{ opacity: 0, y }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: viewportAmount }}
-      transition={{ duration, delay }}
+      transition={{ duration, delay, ease: [0.16, 1, 0.3, 1] }}
       className={className}
     >
       {children}

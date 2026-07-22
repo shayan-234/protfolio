@@ -1,6 +1,7 @@
 import { useEffect, lazy, Suspense, type ReactNode } from "react"
 import Nav from "./components/Nav"
 import Hero from "./components/Hero"
+import SplashCursor from "./components/SplashCursor"
 
 const About = lazy(() => import("./components/About"))
 const Skills = lazy(() => import("./components/Skills"))
@@ -12,7 +13,15 @@ const Footer = lazy(() => import("./components/Footer"))
 
 function SuspenseSection({ children }: { children: ReactNode }) {
   return (
-    <Suspense fallback={<div className="py-16 md:py-20 bg-black" />}>
+    <Suspense
+      fallback={
+        <div className="py-20 md:py-28 bg-black">
+          <div className="max-w-6xl mx-auto px-6">
+            <div className="h-8 w-48 bg-white/[0.03] rounded-lg animate-pulse" />
+          </div>
+        </div>
+      }
+    >
       {children}
     </Suspense>
   )
@@ -30,6 +39,7 @@ function App() {
 
   return (
     <div className="min-h-screen bg-black text-white">
+      <SplashCursor />
       <Nav />
       <main id="main-content">
         <Hero />
