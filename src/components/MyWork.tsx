@@ -43,7 +43,7 @@ const ProjectView = memo(function ProjectView({ projectId }: { projectId: string
   )
 
   if (!project) {
-    return <div className="text-white/40 text-center">Project not found.</div>
+    return <div className="text-white/50 text-center">Project not found.</div>
   }
 
   const hasScreenshots = project.screenshots.length > 0
@@ -72,7 +72,7 @@ const ProjectView = memo(function ProjectView({ projectId }: { projectId: string
           </p>
 
           <div className="mb-6">
-            <h4 className="text-xs font-mono text-white/30 tracking-[0.1em] mb-3 uppercase">
+            <h4 className="text-xs font-mono text-white/50 tracking-[0.1em] mb-3 uppercase">
               Tech Stack
             </h4>
             <div className="flex flex-wrap gap-1.5">
@@ -88,7 +88,7 @@ const ProjectView = memo(function ProjectView({ projectId }: { projectId: string
           </div>
 
           <div>
-            <h4 className="text-xs font-mono text-white/30 tracking-[0.1em] mb-3 uppercase">
+            <h4 className="text-xs font-mono text-white/50 tracking-[0.1em] mb-3 uppercase">
               Features
             </h4>
             <ul className="space-y-1.5">
@@ -140,7 +140,7 @@ const ProjectView = memo(function ProjectView({ projectId }: { projectId: string
                   >
                     {'{ }'}
                   </span>
-                  <p className="mt-2 text-xs text-white/30 font-mono">
+                  <p className="mt-2 text-xs text-white/50 font-mono">
                     screenshots coming soon
                   </p>
                 </div>
@@ -152,17 +152,17 @@ const ProjectView = memo(function ProjectView({ projectId }: { projectId: string
             <div className="flex items-center justify-center gap-6 mt-4">
               <button
                 onClick={prev}
-                className="w-9 h-9 rounded-full bg-white/[0.04] border border-white/[0.06] flex items-center justify-center text-white/40 hover:text-white hover:bg-white/[0.08] transition-all"
+                className="w-9 h-9 rounded-full bg-white/[0.04] border border-white/[0.06] flex items-center justify-center text-white/50 hover:text-white hover:bg-white/[0.08] transition-all"
                 aria-label="Previous screenshot"
               >
                 <ArrowLeft03Icon className="size-3.5" aria-hidden="true" />
               </button>
-              <span className="text-xs font-mono text-white/40" aria-hidden="true">
+              <span className="text-xs font-mono text-white/50" aria-hidden="true">
                 {index + 1} / {total}
               </span>
               <button
                 onClick={next}
-                className="w-9 h-9 rounded-full bg-white/[0.04] border border-white/[0.06] flex items-center justify-center text-white/40 hover:text-white hover:bg-white/[0.08] transition-all"
+                className="w-9 h-9 rounded-full bg-white/[0.04] border border-white/[0.06] flex items-center justify-center text-white/50 hover:text-white hover:bg-white/[0.08] transition-all"
                 aria-label="Next screenshot"
               >
                 <ArrowRight03Icon className="size-3.5" aria-hidden="true" />

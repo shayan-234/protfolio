@@ -1152,6 +1152,7 @@ function SplashCursor({
 
   return (
     <div
+      aria-hidden="true"
       style={{
         position: 'fixed',
         top: 0,

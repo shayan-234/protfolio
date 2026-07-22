@@ -84,7 +84,7 @@ export default function CaseStudies() {
             {study.keywords.map((kw) => (
               <span
                 key={kw}
-                className="px-3 py-1 text-xs rounded-full bg-white/[0.03] border border-white/[0.06] text-white/40"
+                className="px-3 py-1 text-xs rounded-full bg-white/[0.03] border border-white/[0.06] text-white/50"
               >
                 {kw}
               </span>

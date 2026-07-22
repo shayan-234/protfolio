@@ -38,8 +38,8 @@ export default function Experience() {
                   <p className="text-accent-400/80 text-sm mt-0.5">{exp.company}</p>
                 </div>
                 <div className="shrink-0 text-right">
-                  <p className="text-xs text-white/40 font-mono">{exp.period}</p>
-                  <p className="text-xs text-white/30 mt-0.5">{exp.location}</p>
+                  <p className="text-xs text-white/50 font-mono">{exp.period}</p>
+                  <p className="text-xs text-white/50 mt-0.5">{exp.location}</p>
                 </div>
               </div>
 

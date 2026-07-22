@@ -9,7 +9,7 @@ export default function Hero() {
       <div className="relative w-full max-w-6xl mx-auto px-6 py-24 md:py-0">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           <div>
-            <p className="text-white/40 text-sm mb-4">
+            <p className="text-white/50 text-sm mb-4">
               Hi, I&apos;m
             </p>
 
@@ -19,7 +19,7 @@ export default function Hero() {
               <span className="text-white">Shakeel</span>
             </h1>
 
-            <p className="mt-4 text-sm text-white/40 font-mono">
+            <p className="mt-4 text-sm text-white/50 font-mono">
               Dev Marketer &mdash; SEO Manager &mdash; AI Integrator
             </p>
 
@@ -46,14 +46,14 @@ export default function Hero() {
             </div>
 
             <div className="mt-12">
-              <p className="text-xs font-mono uppercase tracking-[0.2em] text-white/30 mb-3">
+              <p className="text-xs font-mono uppercase tracking-[0.2em] text-white/50 mb-3">
                 Tech Stack
               </p>
               <div className="flex flex-wrap gap-2">
                 {["React", "Next.js", "TypeScript", "Node.js", "Python", "PostgreSQL", "Tailwind"].map((tech) => (
                   <span
                     key={tech}
-                    className="px-3 py-1.5 text-xs font-medium rounded-lg bg-white/[0.03] border border-white/[0.06] text-white/40"
+                    className="px-3 py-1.5 text-xs font-medium rounded-lg bg-white/[0.03] border border-white/[0.06] text-white/50"
                   >
                     {tech}
                   </span>

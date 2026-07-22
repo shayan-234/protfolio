@@ -43,7 +43,7 @@ export default function Nav() {
             <a
               key={link.href}
               href={link.href}
-              className="px-3 py-2 text-sm text-white/40 hover:text-white/80 transition-colors rounded-lg hover:bg-white/[0.03]"
+              className="px-3 py-2 text-sm text-white/50 hover:text-white/80 transition-colors rounded-lg hover:bg-white/[0.03]"
             >
               {link.label}
             </a>
