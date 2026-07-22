@@ -1,4 +1,4 @@
-import { useEffect, lazy, Suspense, type ReactNode } from "react"
+import { useEffect, useState, lazy, Suspense, type ReactNode } from "react"
 import Nav from "./components/Nav"
 import Hero from "./components/Hero"
 import SplashCursor from "./components/SplashCursor"
@@ -36,17 +36,22 @@ function useScrollToTopWithoutHash() {
 
 function App() {
   useScrollToTopWithoutHash()
+  const [isDesktop, setIsDesktop] = useState(false)
+
+  useEffect(() => {
+    setIsDesktop(window.matchMedia('(min-width: 769px) and (hover: hover)').matches)
+  }, [])
 
   return (
     <div className="min-h-screen bg-black text-white">
-      <SplashCursor
+      {isDesktop && <SplashCursor
         DYE_RESOLUTION={192}
         SIM_RESOLUTION={48}
         PRESSURE_ITERATIONS={4}
         CURL={1}
         SPLAT_FORCE={1500}
         COLOR_UPDATE_SPEED={5}
-      />
+      />}
       <Nav />
       <main id="main-content">
         <Hero />

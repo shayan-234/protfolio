@@ -41,9 +41,6 @@ function SplashCursor({
   const animationFrameId = useRef<number | null>(null);
 
   useEffect(() => {
-    const isMobile = window.matchMedia('(max-width: 768px), (hover: none)').matches;
-    if (isMobile) return;
-
     const canvas = canvasRef.current;
     if (!canvas) return;
     const cvs: HTMLCanvasElement = canvas;
