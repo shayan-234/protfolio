@@ -41,6 +41,9 @@ function SplashCursor({
   const animationFrameId = useRef<number | null>(null);
 
   useEffect(() => {
+    const isMobile = window.matchMedia('(max-width: 768px), (hover: none)').matches;
+    if (isMobile) return;
+
     const canvas = canvasRef.current;
     if (!canvas) return;
     const cvs: HTMLCanvasElement = canvas;
@@ -1126,10 +1129,13 @@ function SplashCursor({
     window.addEventListener('touchmove', handleTouchMove, false);
     window.addEventListener('touchend', handleTouchEnd);
 
-    updateFrame();
+    const startFrame = requestAnimationFrame(() => {
+      updateFrame();
+    });
 
     return () => {
       isActive = false;
+      cancelAnimationFrame(startFrame);
 
       if (animationFrameId.current) {
         cancelAnimationFrame(animationFrameId.current);
